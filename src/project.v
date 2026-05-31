@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2026 Your Name
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,8 +7,8 @@
 
 module tt_um_example (
     input  wire       VGND,
-    input  wire       VDPWR,    // 1.8v power supply
-//    input  wire       VAPWR,    // 3.3v power supply
+    input  wire       VDPWR,    // 3.3v core power supply
+//    input  wire       VAPWR,    // second analog power supply (VAA)
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
