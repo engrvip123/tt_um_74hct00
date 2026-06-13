@@ -6,7 +6,7 @@ An open-source silicon re-implementation of the classic **74HCT00 quad
 2-input NAND** logic IC, ported to the GlobalFoundries **gf180mcuD** PDK
 at **3.3 V**. 
 
-- [Read the full datasheet for this project](docs/info.md)
+- [Read information about this project](docs/info.md)
 
 ## Why this design
 
