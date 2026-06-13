@@ -1,6 +1,9 @@
+# Editor / OS metadata
 .DS_Store
 .idea
 .vscode
+
+# Existing TT template ignores
 *.vcd
 runs
 tt_submission
@@ -9,3 +12,21 @@ test/sim_build
 test/__pycache__/
 test/results.xml
 test/gate_level_netlist.v
+
+# Build backups
+gds/backups/
+
+# Source macro GDS — fully baked into gds/tt_um_74hct00.gds, not needed standalone
+gds/74hct00_top.gds
+
+# Integration scripts (klayout routing, older builder)
+# These produced gds/tt_um_74hct00.gds; they aren't part of the TT submission.
+src/add_routing.py
+src/build_tt_um_74hct00.py
+
+# Magic working folder — only the final integrated top cell is tracked.
+# All round-tripped sub-cells, extraction outputs, scratch tcl, swap/draw
+# helpers and the tile-DEF reference were used during integration but are
+# not required for the TT submission.
+mag/*
+!mag/tt_um_74hct00.mag

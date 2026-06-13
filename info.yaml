@@ -1,40 +1,40 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "74HCT00 Quad 2-Input NAND (3.3 V)"
+  author:       "Vipul Sharma"
+  discord:      ""
+  description:  "Open-source silicon re-implementation of the 74HCT00 TTL-compatible quad 2-input NAND on gf180mcuD at 3.3 V"
+  language:     "Analog"
+  clock_hz:     0
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
   tiles: "1x2"          # Valid values for analog projects: 1x2, 2x2, 3x2, 4x2
 
   # How many analog pins does your project use?
-  analog_pins: 2        # Valid values: 0 to 6
-  uses_vapwr: false     # Set to true if your project uses the second analog power supply (VAPWR) in addition to VDPWR (3.3V)
+  analog_pins: 5        # ua[0..4]: 4 NAND outputs + 1 HCT-window probe
+  uses_vapwr: false     # 3.3 V on VDPWR only; no second analog supply needed
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_74hct00"
 
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
-  source_files:        
+  source_files:
     - "project.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
-  # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  # Inputs (gate-paired: A_i and B_i on adjacent ui_in pins)
+  ui[0]: "A1 (Gate 1 input A)"
+  ui[1]: "B1 (Gate 1 input B)"
+  ui[2]: "A2 (Gate 2 input A)"
+  ui[3]: "B2 (Gate 2 input B)"
+  ui[4]: "A3 (Gate 3 input A)"
+  ui[5]: "B3 (Gate 3 input B)"
+  ui[6]: "A4 (Gate 4 input A)"
+  ui[7]: "B4 (Gate 4 input B)"
 
-  # Outputs
+  # Outputs (unused -- NAND outputs are on the analog pins instead, for VOH/VOL at ±4 mA)
   uo[0]: ""
   uo[1]: ""
   uo[2]: ""
@@ -44,7 +44,7 @@ pinout:
   uo[6]: ""
   uo[7]: ""
 
-  # Bidirectional pins
+  # Bidirectional pins (unused)
   uio[0]: ""
   uio[1]: ""
   uio[2]: ""
@@ -55,11 +55,11 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: ""
-  ua[1]: ""
-  ua[2]: ""
-  ua[3]: ""
-  ua[4]: ""
+  ua[0]: "Y1 (Gate 1 output)"
+  ua[1]: "Y2 (Gate 2 output)"
+  ua[2]: "Y3 (Gate 3 output)"
+  ua[3]: "Y4 (Gate 4 output)"
+  ua[4]: "A1 HCT-window probe (also on ui[0]; do not drive both at once)"
   ua[5]: ""
 
 # Do not change!
