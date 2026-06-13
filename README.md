@@ -1,36 +1,32 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
 
-# Tiny Tapeout Analog Project Template
+# 74HCT00 Quad 2-Input NAND — 3.3 V Open-Source Re-implementation
 
-- [Read the documentation for project](docs/info.md)
+An open-source silicon re-implementation of the classic **74HCT00 quad
+2-input NAND** logic IC, ported to the GlobalFoundries **gf180mcuD** PDK
+at **3.3 V**. 
 
-## What is Tiny Tapeout?
+- [Read the full datasheet for this project](docs/info.md)
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip.
+## Why this design
 
-To learn more and get started, visit https://tinytapeout.com.
+The 74HCT00 family is a classic TTL-compatible CMOS NAND part that
+boards have relied on for decades to translate TTL-level signals into
+CMOS logic (V_IL_max = 0.8 V, V_IH_min = 2.0 V). Addressing the obsolescence 
+of 74HCT-family logic, this project tries to provides an open-source replacement. 
 
-## Analog projects
+The design is a fully custom analog layout (no
+standard-cell synthesis): four NAND gates built from a circuit chain that preserves the HCT
+threshold window on a 3.3 V rail and drives a rated **±4 mA load
+current** at the output.
 
-For specifications and instructions, see the [analog specs page](https://tinytapeout.com/specs/analog/).
+## Pinout (Tiny Tapeout side)
 
-## Enable GitHub actions to build the results page
+All four gate **outputs (Y1..Y4) come out on analog pads `ua[0..3]`**,
+not on the digital `uo_out` bus, so the bench can measure VOH/VOL at
+the rated ±4 mA drive without the TT pad buffer in series. A fifth
+analog pad `ua[4]` exposes the A1 input node directly for DC sweeping
+the HCT input window on real silicon. The eight gate inputs
+(A1/B1..A4/B4) come in on `ui_in[0..7]`.
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
-## Resources
-
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+See [docs/info.md](docs/info.md) for the full pin table and the bench measurement procedure. 
