@@ -24,9 +24,5 @@ gds/74hct00_top.gds
 src/add_routing.py
 src/build_tt_um_74hct00.py
 
-# Magic working folder — only the final integrated top cell is tracked.
-# All round-tripped sub-cells, extraction outputs, scratch tcl, swap/draw
-# helpers and the tile-DEF reference were used during integration but are
-# not required for the TT submission.
+# Local scratch directory; nothing in here is tracked.
 mag/*
-!mag/tt_um_74hct00.mag
