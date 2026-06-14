@@ -20,6 +20,14 @@ digital pins, allowing V<sub>OH</sub> and V<sub>OL</sub> to be measured at
 the rated ±4 mA drive without the digital output buffer of the TT pad frame
 in series.
 
+An additional analog pin `ua[4]` is wired to the same internal node as
+`ui_in[0]` (the A input of gate 1), bypassing the TT digital input buffer.
+This makes it possible to apply a slow DC sweep on `ua[4]` directly to the
+gate's input and verify the HCT input window on silicon — a digital pad
+would otherwise snap any intermediate voltage to 0 V or 3.3 V before it
+reached the gate. Because the two pads share the same internal A1 node,
+they must not be driven simultaneously.
+
 ## Schematics
 
 The design was captured in **xschem** and simulated in **ngspice**. Per-cell
@@ -40,6 +48,33 @@ NAND gate (`nand2_hct.sch`):
 Interior NOR2 (`nor2.sch`):
 
 ![Interior NOR2](nor2.png)
+
+## Pinout
+
+Tile input pins mapped to NAND gate inputs:
+
+| Tile pin   | Cell pin                                      |
+|------------|-----------------------------------------------|
+| `ui_in[0]` | A1 (Gate 1 input A)                           |
+| `ui_in[1]` | B1 (Gate 1 input B)                           |
+| `ui_in[2]` | A2 (Gate 2 input A)                           |
+| `ui_in[3]` | B2 (Gate 2 input B)                           |
+| `ui_in[4]` | A3 (Gate 3 input A)                           |
+| `ui_in[5]` | B3 (Gate 3 input B)                           |
+| `ui_in[6]` | A4 (Gate 4 input A)                           |
+| `ui_in[7]` | B4 (Gate 4 input B)                           |
+| `ua[4]`    | A1 (HCT-window probe; shared with `ui_in[0]`) |
+
+Tile output pins mapped to NAND gate outputs:
+
+| Tile pin | Cell pin            |
+|----------|---------------------|
+| `ua[0]`  | Y1 (Gate 1 output)  |
+| `ua[1]`  | Y2 (Gate 2 output)  |
+| `ua[2]`  | Y3 (Gate 3 output)  |
+| `ua[3]`  | Y4 (Gate 4 output)  |
+
+Power pins: `VDPWR` is the 3.3 V supply, `VGND` is ground.
 
 ## How to test
 
