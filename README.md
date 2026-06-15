@@ -1,5 +1,3 @@
-!\[](../../workflows/gds/badge.svg) !\[](../../workflows/docs/badge.svg)
-
 # 74HCT00 Quad 2-Input NAND — 3.3 V Open-Source Re-implementation
 
 An open-source silicon re-implementation of **74HCT00 quad
