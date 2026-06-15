@@ -24,9 +24,14 @@ current** at the output.
 
 All four gate **outputs (Y1..Y4) come out on analog pads `ua[0..3]`**,
 not on the digital `uo_out` bus, so the bench can measure VOH/VOL at
-the rated ±4 mA drive without the TT pad buffer in series. A fifth
-analog pad `ua[4]` exposes the A1 input node directly for DC sweeping
-the HCT input window on real silicon. The eight gate inputs
-(A1/B1..A4/B4) come in on `ui_in[0..7]`.
+the rated ±4 mA drive without the TT pad buffer in series. The A input
+of gate 1 (A1) is on the analog pad `ua[4]` — used both for functional
+drive (0 / 3.3 V truth-table test) and for a slow DC ramp characterising
+the HCT input window on silicon. Driving A1 through a digital `ui_in`
+pin would defeat the HCT-window measurement, since the TT pad buffer
+snaps any intermediate voltage to a clean 0 / 3.3 V at its own CMOS
+threshold before reaching the gate. The remaining seven gate inputs
+(B1, A2 / B2, A3 / B3, A4 / B4) come in on `ui_in[1..7]`; `ui_in[0]`
+is left unused.
 
 See [docs/info.md](docs/info.md) for the full pin table and the bench measurement procedure. 

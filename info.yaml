@@ -11,7 +11,7 @@ project:
   tiles: "1x2"          # Valid values for analog projects: 1x2, 2x2, 3x2, 4x2
 
   # How many analog pins does your project use?
-  analog_pins: 5        # ua[0..4]: 4 NAND outputs + 1 HCT-window probe
+  analog_pins: 5        # ua[0..3]: 4 NAND outputs; ua[4]: A1 input (logic drive + HCT-window DC sweep)
   uses_vapwr: false     # 3.3 V on VDPWR only; no second analog supply needed
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
@@ -24,8 +24,11 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
-  # Inputs (gate-paired: A_i and B_i on adjacent ui_in pins)
-  ui[0]: "A1 (Gate 1 input A)"
+  # Inputs. NOTE: Gate 1's A input is NOT on a digital ui pin; it is on
+  # ua[4] (analog) so a slow DC ramp can characterise the HCT input window
+  # on silicon. A digital pad's CMOS buffer would snap any intermediate
+  # voltage to 0/3.3 V before it reached the gate.
+  ui[0]: ""
   ui[1]: "B1 (Gate 1 input B)"
   ui[2]: "A2 (Gate 2 input A)"
   ui[3]: "B2 (Gate 2 input B)"
@@ -59,7 +62,7 @@ pinout:
   ua[1]: "Y2 (Gate 2 output)"
   ua[2]: "Y3 (Gate 3 output)"
   ua[3]: "Y4 (Gate 4 output)"
-  ua[4]: "A1 HCT-window probe (also on ui[0]; do not drive both at once)"
+  ua[4]: "A1 (Gate 1 input A; 0/3.3 V for truth table, slow DC ramp 0->3.3 V for HCT window)"
   ua[5]: ""
 
 # Do not change!
