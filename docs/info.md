@@ -37,19 +37,19 @@ LVS was performed in KLayout.
 
 Chip-level testbench (`tb\_74hct00\_top.sch`):
 
-!\[Chip-level testbench](tb\_74hct00\_top.png)
+![Chip-level testbench](tb_74hct00_top.png)
 
 Top-level schematic (`74hct00\_top.sch`):
 
-!\[Chip top](74hct00\_top.png)
+![Chip top](74hct00_top.png)
 
 NAND gate (`nand2\_hct.sch`):
 
-!\[NAND gate](nand2\_hct.png)
+![NAND gate](nand2_hct.png)
 
 Interior NOR2 (`nor2.sch`):
 
-!\[Interior NOR2](nor2.png)
+![Interior NOR2](nor2.png)
 
 ## Pinout
 
