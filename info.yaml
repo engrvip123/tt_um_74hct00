@@ -3,7 +3,7 @@ project:
   title:        "74HCT00 Quad 2-Input NAND (3.3 V)"
   author:       "Vipul Sharma"
   discord:      ""
-  description:  "Open-source silicon re-implementation of the 74HCT00 TTL-compatible quad 2-input NAND on gf180mcuD at 3.3 V"
+  description:  "Open-source silicon realization of 74HCT00 TTL-compatible quad 2-input NAND on gf180mcuD at 3.3 V"
   language:     "Analog"
   clock_hz:     0
 
